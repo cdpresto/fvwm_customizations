@@ -11,8 +11,8 @@
 #
 #  This config file is organized as follows:
 #
-#    1: Functions
-#    2: Styles
+#    1: Styles
+#    2: Functions
 #    3: Colorsets
 #    4: Menus
 #    5: Bindings
@@ -22,15 +22,17 @@
 #################################
 
 # == FVWM 2 'Vivid' config ==
-# (L) Carl Svensson, https://datagubbe.se/fvwm
-
+# ==	1:Styles Section ==
 # == Set ImagePath ==
 ImagePath $HOME/.fvwm/icons:+
 
+
+
+
 # == Set up the pager ==
 # 2x3 desktops, no edgescroll, no labels.
-DeskTopSize 2 3
-EdgeScroll 0 0
+DeskTopSize 3 3
+EdgeScroll 1 1
 *FvwmPagerBack SlateBlue
 *FvwmPagerFore black
 *FvwmPagerHilight Orchid
@@ -93,7 +95,9 @@ TitleStyle Height 25
 Style * DecorateTransient
 
 # Focus follows mouse
-Style "*" SloppyFocus
+# Style "*" SloppyFocus
+Style * SloppyFocus, MouseFocusClickRaises, !FPGrabFocus
+Style * MinOverlapPlacement, !UsePPosition
 
 # Snap windows to other windows _and_ screen edges
 Style * SnapAttraction 10 Screen
