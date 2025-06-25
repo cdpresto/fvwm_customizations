@@ -745,7 +745,7 @@ AddToFunc StartFunction
 + I Exec exec xterm -bg '#FBFA6B' -fg '#000000' &                     							# Launch a terminal
 + I Exec exec gkrellm 2> /dev/null &                     								# Launch a terminal
 + I Exec exec xeyes -fg blue -outline green -render -distanc 2> /dev/null &                     			# Launch a terminal
-+ I Exec exec feh --bg-center /home/otc/20241109-0F7A6F76-A688-479C-B694-B80001620326_1_201_a.jpg &                     # Launch a terminal
++ I Exec exec feh --bg-fill ~/Pictures/Misc/mt\ hood.JPG &								# Launch background
 + I Exec exec firefox &                  										# Launch a firefox browser
 + I Exec exec nm-applet &               										# Launch NetworkManager applet
 + I Exec exec volumeicon &              										# Launch volume control applet
