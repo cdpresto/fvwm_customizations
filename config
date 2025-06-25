@@ -218,9 +218,13 @@ Style * WindowShadeScrolls, WindowShadeSteps 10
 IgnoreModifiers L25
 
 # Decor Styles
-Style * BorderWidth 5, HandleWidth 5, MWMButtons, FvwmBorder, FirmBorder
-Style * Colorset 1, HilightColorset 2
-Style * BorderColorset 3, HilightBorderColorset 4
+#Style * BorderWidth 5, HandleWidth 5, MWMButtons, FvwmBorder, FirmBorder
+Style * BorderWidth 7, HandleWidth 7, MWMButtons, FvwmBorder, DepressableBorder
+Style * Colorset 17, HilightColorset 13
+Style * BorderColorset 17, HilightBorderColorset 13
+#Added to try and make the border better... 
+#Style * BorderStyle Simple -- Flat
+Style * BorderStyle Raised
 
 # Disable Icons from appearing on desktop.
 # Comment this out or use Style * Icon to get the icons back.
@@ -270,7 +274,9 @@ Colorset 10 fg #ffffff, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 Colorset 11 fg #ffffff, bg #1a6e99, hi #ffffff, sh #ffffff, Plain, NoShape
 Colorset 12 fg #2d2d2d, bg #ffffff, hi, sh, Plain, NoShape
 Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
-Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
+#Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
+Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape  # Darker teal for inactive (unchanged)
+Colorset 17 fg Black, bg #808080  # Grey for borders (from config.good_windows)
 
 #######
 # 4: Menus
@@ -512,9 +518,10 @@ Mouse 3 I    A Menu MenuIconOps
 #   4 - Maximize
 #   6 - Minimize
 ###########
-TitleStyle Centered Height 18 -- Flat
+#TitleStyle Centered Height 18 -- Flat
+TitleStyle Centered Height 24 -- Raised
 ButtonStyle All ActiveUp Vector 5 15x15@4 15x85@3 85x85@3 85x15@3 \
-                15x15@3 -- Flat
+                15x15@3 -- Raised
 ButtonStyle All ToggledActiveUp Vector 5 15x15@4 15x85@3 85x85@3 \
                 85x15@3 15x15@3 -- Flat
 ButtonStyle All ActiveDown Vector 5 20x20@4 20x80@3 80x80@3 80x20@3 \
@@ -522,9 +529,9 @@ ButtonStyle All ActiveDown Vector 5 20x20@4 20x80@3 80x80@3 80x20@3 \
 ButtonStyle All ToggledActiveDown Vector 5 20x20@4 20x80@3 80x80@3 \
                 80x20@3 20x20@3 -- Flat
 ButtonStyle All ToggledInactive Vector 5 47x47@3 57x53@3 53x53@3 \
-                53x47@3 47x47@3 -- Flat
+                53x47@3 47x47@3 -- Raised
 ButtonStyle All Inactive Vector 5 47x47@3 57x53@3 53x53@3 53x47@3 \
-                47x47@3 -- Flat
+                47x47@3 -- Raised
 AddButtonStyle 1 Active Vector 5 45x45@3 55x45@3 55x55@3 45x55@3 45x45@3
 AddButtonStyle 2 Active Vector 4 35x35@3 65x65@3 65x35@4 35x65@3
 AddButtonStyle 4 Active Vector 8 30x70@3 30x30@3 70x30@3 70x70@3 30x70@3 \
@@ -735,11 +742,23 @@ DestroyModuleConfig FvwmClock: *
 
 AddToFunc StartFunction
 + I Module FvwmButtons FvwmClock
++ I Exec exec xterm -bg '#FBFA6B' -fg '#000000' &                     							# Launch a terminal
++ I Exec exec gkrellm 2> /dev/null &                     								# Launch a terminal
++ I Exec exec xeyes -fg blue -outline green -render -distanc 2> /dev/null &                     			# Launch a terminal
++ I Exec exec feh --bg-center /home/otc/20241109-0F7A6F76-A688-479C-B694-B80001620326_1_201_a.jpg &                     # Launch a terminal
++ I Exec exec firefox &                  										# Launch a firefox browser
++ I Exec exec nm-applet &               										# Launch NetworkManager applet
++ I Exec exec volumeicon &              										# Launch volume control applet
++ I Exec exec solaar 2> /dev/null &											# Needed for the mouse to work correctly
++ I Exec exec /opt/microsoft/msedge/msedge 2>/dev/null &								# Launch the edge browser
++ I Exec exec nautilus 2> /dev/null &											# Launch a file manager
++ I Exec exec mate-screenshot 2> /dev/null &										# Launch the screen capture
 
 #keyboard shortcuts
 #
 #
 Key <Control><Alt>t Exec xterm
+Key T A CM Exec exec xterm  -bg '#FBFA6B' -fg '#000000' 
 Key <Control>d Exec fvwm-desktop -toggle
 Key <Control>m Exec fvwm-util -C "ActiveWindow Minimize" 
 
