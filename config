@@ -592,6 +592,7 @@ DestroyModuleConfig FvwmScript:*
 # Note - To use the system tray you must have "stalonetray" installed.
 DestroyModuleConfig RightPanel:*
 #*RightPanel: Geometry 120x$[vp.height]-0+0
+#Style RightPanel Borders
 *RightPanel: Geometry 120x$[vp.height]-3840+0
 *RightPanel: Colorset 10
 *RightPanel: Rows $[vp.height]
@@ -612,14 +613,14 @@ DestroyModuleConfig RightPanel:*
 *RightPanel: (120x5, Frame 0)
 Test (x stalonetray) *RightPanel: (120x20, Swallow(NoClose,UseOld) \
     stalonetray 'Exec exec stalonetray --config \
-    "$[FVWM_DATADIR]/default-config/.stalonetrayrc"', Frame 0)
-Test (x stalonetray) PipeRead 'echo "*RightPanel: (120x$(($[vp.height]-225)), \
+    "/home/charles/.fvwm/stalonetrayrc "', Frame 0)
+Test (x stalonetray) PipeRead 'echo "*RightPanel: (120x$(($[vp.height]-265)), \
     Top, Swallow FvwmIconMan \'Module FvwmIconMan\', Frame 0)"'
 Test (!x stalonetray) PipeRead 'echo "*RightPanel: (120x$(($[vp.height]-205)),\
     Top, Swallow FvwmIconMan \'Module FvwmIconMan\', Frame 0)"'
-*RightPanel: (120x45, Swallow DateTime 'Module FvwmScript FvwmScript-DateTime',\
+*RightPanel: (120x65, Swallow DateTime 'Module FvwmScript FvwmScript-DateTime',\
     Frame 0)
-*RightPanel: (120x5, Frame 0)
+#*RightPanel: (120x5, Frame 0)
 
 # FvwmPager
 #

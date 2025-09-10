@@ -1,9 +1,10 @@
 decorations none
-geometry 6x1
-icon_size 18
-kludges force_icons_size
-max_geometry 6x1
+geometry 5x4  #start small 
+icon_size 20
+kludges force_icons_size 
+max_geometry 5x4  #Allow unlimited growth
 parent_bg true
 transparent false
-icon_gravity SE
-no_shrink true
+icon_gravity NW 
+grow_gravity NW
+no_shrink false     #Allow shrinking and growing
