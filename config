@@ -305,7 +305,7 @@ AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "&Monokai%icons/terminal.png%" Exec exec xterm -bg '#272822' -fg '#f8f8f2'
 + "&Gruvbox Dark%icons/terminal.png%" Exec exec xterm -bg '#282828' -fg '#ebdbb2'
 + "&Nord%icons/terminal.png%" Exec exec xterm -bg '#2e3440' -fg '#d8dee9'
-+ "&Tango%icons/terminal.png%" Exec exec xterm -bg '#000000' -fg '#eeeeec'
++ "&Tango%icons/terminal.png%" Exec exec xterm -bg '#000000' -fg '#00ff00'
 + "" Nop
 + "&XTerm%icons/terminal.png%" Exec exec $[infostore.terminal]
 + "Fvwm&Console%icons/terminal.png%" Module FvwmConsole -terminal $[infostore.terminal]
