@@ -270,7 +270,7 @@ Colorset 5  fg #000000, bg #ffffff, hi, sh, Plain, NoShape
 Colorset 6  fg #ffffff, bg #2d2d2d, hi, sh, Plain, NoShape
 Colorset 7  fg grey30, bg #ffffff, hi, sh, Plain, NoShape
 Colorset 8  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
-Colorset 10 fg #ffffff, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
+Colorset 10 fg #ffffff, bg #1e1e2e, hi #aaaaaa, sh #999999, Plain, NoShape
 Colorset 11 fg #ffffff, bg #1a6e99, hi #ffffff, sh #ffffff, Plain, NoShape
 Colorset 12 fg #2d2d2d, bg #ffffff, hi, sh, Plain, NoShape
 Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
