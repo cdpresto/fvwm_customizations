@@ -1,0 +1,1 @@
+# fvwm_customizations
