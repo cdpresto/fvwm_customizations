@@ -287,6 +287,47 @@ MenuStyle * TrianglesSolid, TrianglesUseFore
 MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
 MenuStyle * Font "xft:Sans:Bold:size=8:antialias=True"
 
+# --- Utilities Menu ---
+DestroyMenu MenuUtilities
+AddToMenu   MenuUtilities "Utilities" Title
++ "Update Timezone" Exec exec ~/bin/autotz.sh
++ "" Nop
+# Add more utilities here later:
++ "System Load (xload)" Exec exec xload
++ "System Monitor (xosview)" Exec exec xosview
++ "Disk Usage" Exec exec xterm -e 'ncdu ~'
++ "System Monitor (htop)" Exec exec xterm -e htop
++ "Process Tree (pstree)" Exec exec xterm -e pstree -pa
++ "" Nop
+# Room for more utilities later...
+
+# --- XTerm Variants Menu ---
+DestroyMenu MenuXterms
+AddToMenu   MenuXterms "XTerm Variants" Title
++ "&Default" Exec exec $[infostore.terminal]
++ "&Greenie" Exec exec xterm -bg '#048c14' -fg '#839496'
++ "&Ole Yeller" Exec exec xterm -bg '#FBFA6B' -fg '#000000'
++ "&Red" Exec exec xterm -bg '#ea535b' -fg '#000000'
++ "&Powder" Exec exec xterm -bg '#99ccff' -fg '#FFFF00'
++ "&Solarized Dark" Exec exec xterm -bg '#002b36' -fg '#839496'
++ "&Solarized Light" Exec exec xterm -bg '#fdf6e3' -fg '#586e75'
++ "&Monokai" Exec exec xterm -bg '#272822' -fg '#f8f8f2'
++ "&Gruvbox Dark" Exec exec xterm -bg '#282828' -fg '#ebdbb2'
++ "&Nord" Exec exec xterm -bg '#2e3440' -fg '#d8dee9'
++ "&Tango" Exec exec xterm -bg '#000000' -fg '#00FF00'
+
+# --- Fun Menu ---
+DestroyMenu MenuFun
+AddToMenu   MenuFun "Fun & Toys" Title
++ "X Eyes" Exec exec xeyes
++ "X Clock" Exec exec xclock
++ "X Snow" Exec exec xsnow
++ "X Penguins" Exec exec xpenguins
++ "" Nop
++ "Matrix (cmatrix)" Exec exec xterm -e cmatrix
++ "ASCII Aquarium (asciiquarium)" Exec exec xterm -e asciiquarium
+
+
 # Root Menu
 #
 # The root menu will PopUp with a click in the root
@@ -295,17 +336,13 @@ DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "&Programs%icons/programs.png%" Popup MenuPrograms
 + "XDG &Menu%icons/apps.png%" Popup XDGMenu
-+ "&XTerm%icons/terminal.png%" Exec exec $[infostore.terminal]
-+ "&Greenie%icons/terminal.png%" Exec exec xterm -bg '#048c14' -fg '#839496'
-+ "&Ole Yeller%icons/terminal.png%" Exec exec xterm -bg '#FBFA6B' -fg '#000000'
-+ "&Red%icons/terminal.png%" Exec exec xterm -bg '#ea535b' -fg '#000000'
-+ "&Powder%icons/terminal.png%" Exec exec xterm -bg '#99ccff' -fg '#FFFF00'
-+ "&Solarized Dark%icons/terminal.png%" Exec exec xterm -bg '#002b36' -fg '#839496'
-+ "&Solarized Light%icons/terminal.png%" Exec exec xterm -bg '#fdf6e3' -fg '#586e75'
-+ "&Monokai%icons/terminal.png%" Exec exec xterm -bg '#272822' -fg '#f8f8f2'
-+ "&Gruvbox Dark%icons/terminal.png%" Exec exec xterm -bg '#282828' -fg '#ebdbb2'
-+ "&Nord%icons/terminal.png%" Exec exec xterm -bg '#2e3440' -fg '#d8dee9'
-+ "&Tango%icons/terminal.png%" Exec exec xterm -bg '#000000' -fg '#00ff00'
++ "&XTerms%icons/toolbox.xpm%" Popup MenuXterms
++ "&Utilities%icons/tools.png%" Popup MenuUtilities
++ "&Fun%icons/fun.png%" Popup MenuFun
++ "&Wallpapers%icons/wallpaper.png%" Popup BGMenu
++ "M&an Pages%icons/help.png%" Popup MenuFvwmManPages
++ "Copy Config%icons/conf.png%" FvwmScript FvwmScript-ConfirmCopyConfig
+
 + "" Nop
 + "&XTerm%icons/terminal.png%" Exec exec $[infostore.terminal]
 + "Fvwm&Console%icons/terminal.png%" Module FvwmConsole -terminal $[infostore.terminal]
@@ -688,6 +725,9 @@ DestroyModuleConfig EventNewDesk:*
 # default-config changes to get used after upgrades (if applicable).
 Test (f $[FVWM_USERDIR]/local.config) Read $[FVWM_USERDIR]/local.config
 
+
+
+
 Function "InitFunction"
 # Module  "I"  FvwmBanner
 # Get the fvwm GoodStuff button bar running
@@ -710,7 +750,16 @@ Function "InitFunction"
   Wait  "I"  xterm
 EndFunction
 
+Added by Charles 
+# Define the FvwmButtons panel
+*MyButtonBox: Geometry 200x50-0-0  # Example: 200 pixels wide, 50 high, at bottom right
+*MyButtonBox: Back solid white # Example: white background
+*MyButtonBox: Fore solid black # Example: black foreground
+*MyButtonBox: Rows 1 # Example: one row
+*MyButtonBox: Columns 1 # Example: one column
 
+# Define the button to swallow xclock
+*MyButtonBox: (1x1, Swallow "xclock" `Exec xclock`) # Example: a 1x1 button, swallowing xclock with its execution command
 
 
 AddToFunc InitFunction "I" exec xsetroot -solid SkyBlue
