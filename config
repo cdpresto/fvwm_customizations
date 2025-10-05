@@ -307,7 +307,7 @@ AddToMenu   MenuXterms "XTerm Variants" Title
 + "&Default" Exec exec $[infostore.terminal]
 + "&Greenie" Exec exec xterm -bg '#048c14' -fg '#839496'
 + "&Ole Yeller" Exec exec xterm -bg '#FBFA6B' -fg '#000000'
-+ "&Red" Exec exec xterm -bg '#ea535b' -fg '#000000'
++ "&Red" Exec exec xterm -bg '#8B0000' -fg '#E0E0E0'
 + "&Powder" Exec exec xterm -bg '#99ccff' -fg '#FFFF00'
 + "&Solarized Dark" Exec exec xterm -bg '#002b36' -fg '#839496'
 + "&Solarized Light" Exec exec xterm -bg '#fdf6e3' -fg '#586e75'
@@ -336,9 +336,9 @@ DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "&Programs%icons/programs.png%" Popup MenuPrograms
 + "XDG &Menu%icons/apps.png%" Popup XDGMenu
-+ "&XTerms%icons/toolbox.xpm%" Popup MenuXterms
-+ "&Utilities%icons/tools.png%" Popup MenuUtilities
-+ "&Fun%icons/fun.png%" Popup MenuFun
++ "&XTerms%/home/charles/.fvwm/images/icons/terminal.png%" Popup MenuXterms
++ "&Utilities%/home/charles/.fvwm/images/icons/apps.png%" Popup MenuUtilities
++ "&Fun%icons/run_arrow.png%" Popup MenuFun
 + "&Wallpapers%icons/wallpaper.png%" Popup BGMenu
 + "M&an Pages%icons/help.png%" Popup MenuFvwmManPages
 + "Copy Config%icons/conf.png%" FvwmScript FvwmScript-ConfirmCopyConfig
@@ -648,7 +648,7 @@ DestroyModuleConfig RightPanel:*
 *RightPanel: (110x80, Swallow FvwmPager 'Module FvwmPager *', Frame 0)
 *RightPanel: (5x80, Frame 0)
 *RightPanel: (120x5, Frame 0)
-Test (x stalonetray) *RightPanel: (120x20, Swallow(NoClose,UseOld) \
+#Test (x stalonetray) *RightPanel: (120x20, Swallow(NoClose,UseOld) \
     stalonetray 'Exec exec stalonetray --config \
     "/home/charles/.fvwm/stalonetrayrc "', Frame 0)
 Test (x stalonetray) PipeRead 'echo "*RightPanel: (120x$(($[vp.height]-265)), \
@@ -730,24 +730,10 @@ Test (f $[FVWM_USERDIR]/local.config) Read $[FVWM_USERDIR]/local.config
 
 Function "InitFunction"
 # Module  "I"  FvwmBanner
-# Get the fvwm GoodStuff button bar running
-  Module  "I"  GoodStuff
-# Module  "I"  FvwmPager 0 3
-# Then, the analog clock - Swallowed by GoodStuff
-  Exec  "I"  exec xclock -g 140x160-145+138 &
-  Wait  "I"  xclock
-# Start xmailbox - swallowed by GoodStuff
-  Exec  "I"  exec xmailbox &
-  Wait  "I"  xmailbox
-# Fire up xload - also swallowed by GoodStuff
-  Exec  "I"  exec xload -geometry 80x80+100+100 &
-  Wait  "I"  xload
-# Now, start up xcalendar
-  Exec  "I"  exec xcalendar -g 345x382+793+372 &
-  Wait  "I"  xcalendar
-# Finally, fire up a full screen xterm
-  Exec  "I"  exec xterm -sb -j -ls -g 84x48+4+4 &
-  Wait  "I"  xterm
+# Charles added this to make stalonetray standalone
++ I Exec exec stalonetray --geometry 1x1-0-0 --grow-gravity E --gravity S --skip-taskbar --transparent --icon-gravity E --max-geometry 10x1 --kludges force_icons_size --icon-size 24
++ I Wait stalonetray
++ I WindowId (stalonetray) Move 50p 100p
 EndFunction
 
 Added by Charles 
@@ -763,6 +749,10 @@ Added by Charles
 
 
 AddToFunc InitFunction "I" exec xsetroot -solid SkyBlue
+
+
+/* Create a new style for the stalonetray */
+Style stalonetray !Title, !Handles, Sticky, StaysOnTop, WindowListSkip
 
 /* Create a new style for the xclock  */
 
